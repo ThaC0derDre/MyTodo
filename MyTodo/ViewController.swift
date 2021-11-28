@@ -8,13 +8,31 @@
 import UIKit
 import RealmSwift
 
-class ViewController: UIViewController {
-
+class ViewController: UITableViewController {
+    let items = Items()
+    let realm = try! Realm()
+  
+ 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Add New Item", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Add Item", style: .default) { action in
+                             
+        }
+        alert.addTextField { alertTextField in
+            alertTextField.placeholder = "Create New Item"
+        }
+        alert.addAction(action)
+       
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
+    
+    
 }
 
