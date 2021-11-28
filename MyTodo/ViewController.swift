@@ -17,6 +17,7 @@ class ViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        load()
     }
     
     //MARK: - TableView DataSource methods
@@ -37,8 +38,18 @@ class ViewController: UITableViewController {
     //MARK: - TableView Delgate Methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let items = toDoItems?[indexPath.row]{
+            do{
+                try realm.write{
+                    items.done = !items.done
+                }
+                }catch{
+                    print("Error toggling checkmark")
+            }
+        }
+        tableView.reloadData()
         tableView.deselectRow(at: indexPath, animated: true)
-        
+
     }
     
 
@@ -50,19 +61,24 @@ class ViewController: UITableViewController {
             textField = alertTextField
         }
         let action = UIAlertAction(title: "Add Item", style: .default) { action in
-           let newItem = Items()
-            newItem.title = textField.text!
+           
             do{
                 try self.realm.write(){
+                    let newItem = Items()
+                     newItem.title = textField.text!
                     self.realm.add(newItem)
                 }
             }catch {
                 print("Error adding new Item")
             }
-            
+            self.tableView.reloadData()
         }
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
+    }
+    
+    func load(){
+        toDoItems = realm.objects(Items.self)
     }
 }
 
