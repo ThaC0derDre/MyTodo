@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 
 class ViewController: UITableViewController {
-    let items = Items()
+    
     let realm = try! Realm()
   
  
@@ -20,12 +20,25 @@ class ViewController: UITableViewController {
 
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Add New Item", message: "", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Add Item", style: .default) { action in
-                             
-        }
+        var textField = UITextField()
         alert.addTextField { alertTextField in
             alertTextField.placeholder = "Create New Item"
+            textField = alertTextField
         }
+        let action = UIAlertAction(title: "Add Item", style: .default) { action in
+           let newItem = Items()
+            newItem.title = textField.text!
+            do{
+                try self.realm.write(){
+                    self.realm.add(newItem)
+                }
+            }catch {
+                print("Error adding new Item")
+            }
+            
+        }
+      
+        
         alert.addAction(action)
        
         present(alert, animated: true, completion: nil)
