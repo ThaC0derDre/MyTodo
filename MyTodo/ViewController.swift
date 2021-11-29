@@ -21,6 +21,7 @@ class ViewController: UITableViewController {
     }
     
     //MARK: - TableView DataSource methods
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return toDoItems?.count ?? 1
     }
@@ -37,6 +38,10 @@ class ViewController: UITableViewController {
    
     //MARK: - TableView Delgate Methods
     
+    private func handleMoveToTrash() {
+        print("Moved to Trash")
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let items = toDoItems?[indexPath.row]{
             do{
@@ -51,7 +56,20 @@ class ViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
 
     }
-    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let trash = UIContextualAction(style: .destructive,
+                                       title: "Trash") { [weak self] (action, view, completionHandler) in
+                                        self?.handleMoveToTrash()
+                                        completionHandler(true)
+          let result = self?.delete(at: indexPath) ?? false
+            completionHandler(result)
+        }
+        trash.backgroundColor = .systemRed
+        let configuration = UISwipeActionsConfiguration(actions: [trash])
+
+        return configuration
+    }
+    //MARK: - IBA
 
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Add New Item", message: "", preferredStyle: .alert)
@@ -76,9 +94,29 @@ class ViewController: UITableViewController {
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
-    
+    //MARK: - Funcs
+
     func load(){
         toDoItems = realm.objects(Items.self)
+        tableView.reloadData()
     }
+    func delete(at indexPath: IndexPath) -> Bool {
+        // Check if there is a category at provided row
+        guard let item = toDoItems?[indexPath.row] else {
+            return false
+        }
+        // Delete data from persistent storage
+        do {
+            // Open transaction
+        try realm.write {
+                    
+                // Insert category
+            realm.delete(item)
+        }
+        } catch {
+            fatalError("Error deleting Category: \(error)")
+        }
+        load()
+           return true
 }
-
+}
