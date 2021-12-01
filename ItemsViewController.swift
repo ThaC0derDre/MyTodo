@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class ViewController: UITableViewController {
+class ItemsViewController: UITableViewController {
     
     let realm = try! Realm()
   //Pulling From Realm

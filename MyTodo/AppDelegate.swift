@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }catch{
             print("Error initializing Realm")
         }
+        //Coloring the nav bar 
         if #available(iOS 15, *) {
             let appearance = UINavigationBarAppearance()
             appearance.configureWithOpaqueBackground()
