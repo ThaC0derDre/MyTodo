@@ -15,6 +15,7 @@
 		31C1CCEE2753150B0059D8E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C1CCEC2753150B0059D8E1 /* LaunchScreen.storyboard */; };
 		31C1CCF627531E7D0059D8E1 /* Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C1CCF527531E7D0059D8E1 /* Items.swift */; };
 		31C1CCFC27571AA70059D8E1 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C1CCFB27571AA70059D8E1 /* CategoryTableViewController.swift */; };
+		31C1CCFE27571D510059D8E1 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C1CCFD27571D510059D8E1 /* Category.swift */; };
 		DF5AD6D1D2A50FEC80CCF6F3 /* Pods_MyTodo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C5F235F4797D3F41B06B03A /* Pods_MyTodo.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		31C1CCEF2753150B0059D8E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31C1CCF527531E7D0059D8E1 /* Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Items.swift; sourceTree = "<group>"; };
 		31C1CCFB27571AA70059D8E1 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
+		31C1CCFD27571D510059D8E1 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		682305F931D6AFDA01C892D0 /* Pods-MyTodo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTodo.release.xcconfig"; path = "Target Support Files/Pods-MyTodo/Pods-MyTodo.release.xcconfig"; sourceTree = "<group>"; };
 		9FEEEBABE0DA8D1FB6E8DB4D /* Pods-MyTodo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTodo.debug.xcconfig"; path = "Target Support Files/Pods-MyTodo/Pods-MyTodo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +84,7 @@
 		31C1CCF7275707590059D8E1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				31C1CCFD27571D510059D8E1 /* Category.swift */,
 				31C1CCF527531E7D0059D8E1 /* Items.swift */,
 			);
 			path = Model;
@@ -90,8 +93,8 @@
 		31C1CCF92757079A0059D8E1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				31C1CCE52753150B0059D8E1 /* ItemsViewController.swift */,
 				31C1CCFB27571AA70059D8E1 /* CategoryTableViewController.swift */,
+				31C1CCE52753150B0059D8E1 /* ItemsViewController.swift */,
 			);
 			name = Controller;
 			path = ..;
@@ -242,6 +245,7 @@
 				31C1CCFC27571AA70059D8E1 /* CategoryTableViewController.swift in Sources */,
 				31C1CCE22753150B0059D8E1 /* AppDelegate.swift in Sources */,
 				31C1CCE42753150B0059D8E1 /* SceneDelegate.swift in Sources */,
+				31C1CCFE27571D510059D8E1 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

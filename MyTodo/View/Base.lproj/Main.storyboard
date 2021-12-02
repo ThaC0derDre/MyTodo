@@ -65,7 +65,7 @@
             </objects>
             <point key="canvasLocation" x="-97.101449275362327" y="102.45535714285714"/>
         </scene>
-        <!--Category Table View Controller-->
+        <!--CATEGORIES-->
         <scene sceneID="SfA-ee-j1r">
             <objects>
                 <tableViewController id="MCi-xh-YyZ" customClass="CategoryTableViewController" customModule="MyTodo" customModuleProvider="target" sceneMemberID="viewController">
@@ -88,7 +88,7 @@
                             <outlet property="delegate" destination="MCi-xh-YyZ" id="agU-gA-SgK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="DYj-SG-GjP">
+                    <navigationItem key="navigationItem" title="CATEGORIES" id="DYj-SG-GjP">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Jld-nL-hm3">
                             <connections>
                                 <action selector="addButtonPressed:" destination="MCi-xh-YyZ" id="txM-DN-Of9"/>
