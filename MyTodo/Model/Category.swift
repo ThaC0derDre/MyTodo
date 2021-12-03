@@ -7,9 +7,8 @@
 
 import Foundation
 import RealmSwift
+
 class Category: Object{
-    
-    @Persisted var name = ""
+    @objc dynamic var name = ""
     let items = List<Items>()
-    
 }

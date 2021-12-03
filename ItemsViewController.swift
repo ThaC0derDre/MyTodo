@@ -14,11 +14,15 @@ class ItemsViewController: UITableViewController {
   //Pulling From Realm
     var toDoItems: Results<Items>?
  
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    var selectedCategory: Category? {
+    didSet{
         load()
     }
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     
     //MARK: - TableView DataSource methods
     
@@ -59,9 +63,9 @@ class ItemsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let trash = UIContextualAction(style: .destructive,
                                        title: "Trash") { [weak self] (action, view, completionHandler) in
-                                        self?.handleMoveToTrash()
-                                        completionHandler(true)
-          let result = self?.delete(at: indexPath) ?? false
+            self?.handleMoveToTrash()
+            completionHandler(true)
+            let result = self?.delete(at: indexPath) ?? false
             completionHandler(result)
         }
         trash.backgroundColor = .systemRed
@@ -74,30 +78,32 @@ class ItemsViewController: UITableViewController {
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Add New Item", message: "", preferredStyle: .alert)
         var textField = UITextField()
+        
+        let action = UIAlertAction(title: "Add Item", style: .default) { action in
+            if let currentCategory = self.selectedCategory{
+            do{
+                try self.realm.write{
+                    let newItem = Items()
+                     newItem.title = textField.text!
+                    currentCategory.items.append(newItem)
+                }
+            }catch {
+                print("Error adding new Item \(error)")
+            }
+            self.tableView.reloadData()
+        }
+        }
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
         alert.addTextField { alertTextField in
             alertTextField.placeholder = "Create New Item"
             textField = alertTextField
         }
-        let action = UIAlertAction(title: "Add Item", style: .default) { action in
-           
-            do{
-                try self.realm.write(){
-                    let newItem = Items()
-                     newItem.title = textField.text!
-                    self.realm.add(newItem)
-                }
-            }catch {
-                print("Error adding new Item")
-            }
-            self.tableView.reloadData()
-        }
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
     }
     //MARK: - Funcs
 
     func load(){
-        toDoItems = realm.objects(Items.self)
+        toDoItems = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
         tableView.reloadData()
     }
     func delete(at indexPath: IndexPath) -> Bool {
@@ -109,7 +115,7 @@ class ItemsViewController: UITableViewController {
         do {
             // Open transaction
         try realm.write {
-                    
+
                 // Insert category
             realm.delete(item)
         }

@@ -10,7 +10,8 @@ import RealmSwift
 
 class CategoryTableViewController: UITableViewController {
 
-    private let realm = try! Realm()
+     let realm = try! Realm()
+    
      var categoryArray : Results<Category>?
     
     override func viewDidLoad() {
@@ -37,10 +38,18 @@ class CategoryTableViewController: UITableViewController {
     }
     //MARK: - TableView Delgate Methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        
+        performSegue(withIdentifier: "goToItems", sender: self)
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! ItemsViewController
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            destinationVC.selectedCategory = categoryArray?[indexPath.row]
+        }
+    }
+        
+        
+    
 
     
     //MARK: - IBA's
@@ -66,7 +75,7 @@ class CategoryTableViewController: UITableViewController {
     //MARK: - TableView Manipulation Methods
     func save(_ category: Category){
         do{
-            try realm.write{
+            try realm.write(){
                 realm.add(category)
             }
         }catch{
