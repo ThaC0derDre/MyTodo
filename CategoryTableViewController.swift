@@ -73,6 +73,24 @@ class CategoryTableViewController: UITableViewController {
     }
    
     //MARK: - TableView Manipulation Methods
+    
+    private func handleMoveToTrash() {
+        print("Moved to Trash")
+    }
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let trash = UIContextualAction(style: .destructive,
+                                       title: "Trash") { [weak self] (action, view, completionHandler) in
+            self?.handleMoveToTrash()
+            completionHandler(true)
+            let result = self?.delete(at: indexPath) ?? false
+            completionHandler(result)
+        }
+        trash.backgroundColor = .systemRed
+        let configuration = UISwipeActionsConfiguration(actions: [trash])
+
+        return configuration
+    }
+    
     func save(_ category: Category){
         do{
             try realm.write(){
@@ -83,12 +101,32 @@ class CategoryTableViewController: UITableViewController {
         }
         tableView.reloadData()
     }
+    
 
     func load(){
         categoryArray = realm.objects(Category.self)
         tableView.reloadData()
     }
     
+    func delete(at indexPath: IndexPath) -> Bool {
+        // Check if there is a category at provided row
+        guard let categories = categoryArray?[indexPath.row] else {
+            return false
+        }
+        // Delete data from persistent storage
+        do {
+            // Open transaction
+        try realm.write {
+
+                // Insert category
+            realm.delete(categories)
+        }
+        } catch {
+            fatalError("Error deleting Category: \(error)")
+        }
+        load()
+           return true
+}
 
 }
 

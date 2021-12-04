@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class ItemsViewController: UITableViewController {
+class ItemsViewController: SwipeToDelete {
     
     let realm = try! Realm()
   //Pulling From Realm

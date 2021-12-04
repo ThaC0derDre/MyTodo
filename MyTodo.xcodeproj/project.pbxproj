@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31395880275C2C2E0082BE4C /* SwipeToDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3139587F275C2C2E0082BE4C /* SwipeToDelete.swift */; };
 		31C1CCE22753150B0059D8E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C1CCE12753150B0059D8E1 /* AppDelegate.swift */; };
 		31C1CCE42753150B0059D8E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C1CCE32753150B0059D8E1 /* SceneDelegate.swift */; };
 		31C1CCE62753150B0059D8E1 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C1CCE52753150B0059D8E1 /* ItemsViewController.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		1C5F235F4797D3F41B06B03A /* Pods_MyTodo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTodo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3139587F275C2C2E0082BE4C /* SwipeToDelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeToDelete.swift; sourceTree = "<group>"; };
 		31C1CCDE2753150B0059D8E1 /* MyTodo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTodo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C1CCE12753150B0059D8E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31C1CCE32753150B0059D8E1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			children = (
 				31C1CCFB27571AA70059D8E1 /* CategoryTableViewController.swift */,
 				31C1CCE52753150B0059D8E1 /* ItemsViewController.swift */,
+				3139587F275C2C2E0082BE4C /* SwipeToDelete.swift */,
 			);
 			name = Controller;
 			path = ..;
@@ -246,6 +249,7 @@
 				31C1CCE22753150B0059D8E1 /* AppDelegate.swift in Sources */,
 				31C1CCE42753150B0059D8E1 /* SceneDelegate.swift in Sources */,
 				31C1CCFE27571D510059D8E1 /* Category.swift in Sources */,
+				31395880275C2C2E0082BE4C /* SwipeToDelete.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
